@@ -1,0 +1,23 @@
+{
+    "name": "casdorio/ways-libraries",
+    "description": "Biblioteca para gerenciamento de pagamentos com suporte a múltiplos gateways.",
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Casdorio\\GatewayPayment\\": "GatewayPayment/",
+            "Casdorio\\Hashids\\": "Hashids/",
+            "Casdorio\\OrderManagerService\\": "OrderManagerService/",
+            "Casdorio\\EmailService\\": "EmailService/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Carlos Adriano",
+            "email": "casdorio@gmail.com"
+        }
+    ]
+}
