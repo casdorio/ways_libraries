@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Libraries\GatewayPayment\Entities;
+namespace Casdorio\GatewayPayment\Entities;
 
 use CodeIgniter\Entity\Entity;
 

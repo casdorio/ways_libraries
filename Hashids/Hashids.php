@@ -9,11 +9,11 @@
  * @see https://github.com/casdorio/hashids
  */
 
-namespace App\Libraries\Hashids;
+namespace Casdorio\Hashids;
 
-use App\Libraries\Hashids\Math\BCMath;
-use App\Libraries\Hashids\Math\Gmp;
-use App\Libraries\Hashids\Math\MathInterface;
+use Casdorio\Hashids\Math\BCMath;
+use Casdorio\Hashids\Math\Gmp;
+use Casdorio\Hashids\Math\MathInterface;
 use InvalidArgumentException;
 use RuntimeException;
 

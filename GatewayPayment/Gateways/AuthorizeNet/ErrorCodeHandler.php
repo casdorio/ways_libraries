@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Libraries\GatewayPayment\Gateways\AuthorizeNet;
+namespace Casdorio\GatewayPayment\Gateways\AuthorizeNet;
 
 use ReflectionClass;
 use Exception;

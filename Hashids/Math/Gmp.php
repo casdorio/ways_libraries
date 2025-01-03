@@ -9,7 +9,7 @@
  * @see https://github.com/casdorio/hashids
  */
 
-namespace App\Libraries\Hashids\Math;
+namespace Casdorio\Hashids\Math;
 
 class Gmp implements MathInterface
 {

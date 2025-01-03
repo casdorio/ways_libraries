@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Libraries\GatewayPayment\Controllers;
+namespace Casdorio\GatewayPayment\Controllers;
 
 use CodeIgniter\Controller;
-use App\Libraries\GatewayPayment\Services\PaymentGatewayFactory;
-use App\Libraries\GatewayPayment\Services\PaymentService;
-use App\Libraries\GatewayPayment\Entities\Payment;
-use App\Libraries\GatewayPayment\Entities\Gateway;
+use Casdorio\GatewayPayment\Services\PaymentGatewayFactory;
+use Casdorio\GatewayPayment\Services\PaymentService;
+use Casdorio\GatewayPayment\Entities\Payment;
+use Casdorio\GatewayPayment\Entities\Gateway;
 use Exception;
 
 class PaymentController extends Controller

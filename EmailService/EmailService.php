@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Libraries\EmailService;
+namespace Casdorio\EmailService;
 
 use CodeIgniter\Email\Email;
 

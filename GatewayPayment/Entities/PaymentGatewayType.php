@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Libraries\GatewayPayment\Entities;
+namespace Casdorio\GatewayPayment\Entities;
 
-use App\Libraries\GatewayPayment\Gateways\AuthorizeNet\AuthorizeNetGateway;
-use App\Libraries\GatewayPayment\Gateways\Stripe\StripeGateway;
+use Casdorio\GatewayPayment\Gateways\AuthorizeNet\AuthorizeNetGateway;
+use Casdorio\GatewayPayment\Gateways\Stripe\StripeGateway;
 
 enum PaymentGatewayType: string
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Libraries\GatewayPayment\Services;
+namespace Casdorio\GatewayPayment\Services;
 
-use App\Libraries\GatewayPayment\Interfaces\PaymentGatewayInterface;
-use App\Libraries\GatewayPayment\Entities\Payment;
+use Casdorio\GatewayPayment\Interfaces\PaymentGatewayInterface;
+use Casdorio\GatewayPayment\Entities\Payment;
 
 class PaymentService
 {

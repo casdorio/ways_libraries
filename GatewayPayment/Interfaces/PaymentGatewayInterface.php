@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Libraries\GatewayPayment\Interfaces;
+namespace Casdorio\GatewayPayment\Interfaces;
 
-use App\Libraries\GatewayPayment\Entities\Payment;
+use Casdorio\GatewayPayment\Entities\Payment;
 
 interface PaymentGatewayInterface
 {

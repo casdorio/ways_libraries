@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Libraries\GatewayPayment\Gateways\AuthorizeNet;
+namespace Casdorio\GatewayPayment\Gateways\AuthorizeNet;
 
-use App\Libraries\GatewayPayment\Interfaces\PaymentGatewayInterface;
-use App\Libraries\GatewayPayment\Entities\Payment;
-use App\Libraries\GatewayPayment\Entities\Gateway;
+use Casdorio\GatewayPayment\Interfaces\PaymentGatewayInterface;
+use Casdorio\GatewayPayment\Entities\Payment;
+use Casdorio\GatewayPayment\Entities\Gateway;
 use net\authorize\api\contract\v1 as AnetAPI;
 use net\authorize\api\controller as AnetController;
 

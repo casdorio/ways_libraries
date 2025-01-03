@@ -1,6 +1,6 @@
 {
     "name": "casdorio/ways-libraries",
-    "description": "Biblioteca para gerenciamento de pagamentos com suporte a múltiplos gateways.",
+    "description": "Biblioteca PHP para gerenciamento de pagamentos, suporte a múltiplos gateways, hashids e serviços de pedido e e-mail.",
     "type": "library",
     "license": "proprietary",
     "require": {
@@ -10,7 +10,6 @@
         "psr-4": {
             "Casdorio\\GatewayPayment\\": "GatewayPayment/",
             "Casdorio\\Hashids\\": "Hashids/",
-            "Casdorio\\OrderManagerService\\": "OrderManagerService/",
             "Casdorio\\EmailService\\": "EmailService/"
         }
     },

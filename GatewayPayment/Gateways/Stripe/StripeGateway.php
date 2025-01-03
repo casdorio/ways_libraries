@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Libraries\GatewayPayment\Gateways\Stripe;
+namespace Casdorio\GatewayPayment\Gateways\Stripe;
 
-use App\Libraries\GatewayPayment\Entities\Gateway;
-use App\Libraries\GatewayPayment\Interfaces\PaymentGatewayInterface;
-use App\Libraries\GatewayPayment\Entities\Payment;
+use Casdorio\GatewayPayment\Entities\Gateway;
+use Casdorio\GatewayPayment\Interfaces\PaymentGatewayInterface;
+use Casdorio\GatewayPayment\Entities\Payment;
 
 class StripeGateway implements PaymentGatewayInterface
 {

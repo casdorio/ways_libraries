@@ -9,7 +9,7 @@
  * @see https://github.com/casdorio/hashids
  */
 
-namespace App\Libraries\Hashids;
+namespace Casdorio\Hashids;
 
 interface HashidsInterface
 {
