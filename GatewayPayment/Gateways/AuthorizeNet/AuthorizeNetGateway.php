@@ -212,7 +212,7 @@ class AuthorizeNetGateway implements PaymentGatewayInterface
         $customerAddress->setZip($payment->zip_code);
         $customerAddress->setState($payment->state);
         $customerAddress->setCountry($payment->country);
-        $customerAddress->setPhoneNumber($payment->phoneNumber)
+        $customerAddress->setPhoneNumber($payment->phoneNumber);
         return $customerAddress;
     }
 
