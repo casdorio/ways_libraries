@@ -17,10 +17,11 @@ class Payment extends Entity
         public ?string $last_name,
         public ?string $address,
         public ?string $city,
-        // public string $state,
+        public ?string $state,
         public ?string $zip_code,
-        // public string $country,
+        public ?string $country,
         public ?string $customer_id,
         public ?string $email,
+        public ?string $phoneNumber,
     ) {}
 }

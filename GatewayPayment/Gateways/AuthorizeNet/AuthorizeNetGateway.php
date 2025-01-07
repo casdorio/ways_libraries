@@ -210,6 +210,9 @@ class AuthorizeNetGateway implements PaymentGatewayInterface
         $customerAddress->setAddress($payment->address);
         $customerAddress->setCity($payment->city);
         $customerAddress->setZip($payment->zip_code);
+        $customerAddress->setState($payment->state);
+        $customerAddress->setCountry($payment->country);
+        $customerAddress->setPhoneNumber($payment->phoneNumber)
         return $customerAddress;
     }
 
