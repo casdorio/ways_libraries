@@ -10,7 +10,7 @@ class Payment extends Entity
         public ?string $card_number,
         public ?string $expiration_date,
         public ?string $cvv,
-        public float  $amount,
+        public string $amount,
         public ?string $invoice_number,
         public ?string $description,
         public ?string $first_name,
