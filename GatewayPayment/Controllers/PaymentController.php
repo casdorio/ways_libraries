@@ -23,7 +23,6 @@ class PaymentController extends Controller
         }
 
         $gatewayEntity = new Gateway(
-            id: null,
             name: $gatewayConfig['gateway_name'],
             login_id: $gatewayConfig['login_id'],
             transaction_key: $gatewayConfig['transaction_key'],
