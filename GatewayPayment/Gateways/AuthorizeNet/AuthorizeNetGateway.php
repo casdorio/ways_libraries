@@ -141,6 +141,8 @@ class AuthorizeNetGateway implements PaymentGatewayInterface
                 $transactionRequestType->setOrder($this->createOrder($payment));
                 $transactionRequestType->setPayment($this->createPaymentType($payment));
                 $transactionRequestType->setBillTo($this->createCustomerAddress($payment));
+                $transactionRequestType->setShipTo($this->createCustomerAddressShip($payment));
+                //$transactionRequestType->addToLineItems($this->createLineItem($payment));
                 $transactionRequestType->setCustomer($this->createCustomerData($payment));
                 break;
 
@@ -214,6 +216,19 @@ class AuthorizeNetGateway implements PaymentGatewayInterface
         $customerAddress->setCountry($payment->country);
         $customerAddress->setPhoneNumber($payment->phoneNumber);
         return $customerAddress;
+    }
+
+    private function createCustomerAddressShip(Payment $payment): AnetAPI\CustomerAddressType
+    {
+        $customerShippingAddress = new AnetAPI\CustomerAddressType();
+        $customerShippingAddress->setFirstName("James");
+        $customerShippingAddress->setLastName("White");
+        $customerShippingAddress->setAddress(rand() . " North Spring Street");
+        $customerShippingAddress->setCity("Toms River");
+        $customerShippingAddress->setState("NJ");
+        $customerShippingAddress->setZip("08753");
+        $customerShippingAddress->setCountry("EUA");
+        return $customerShippingAddress;
     }
 
     // Métodos adicionais para criar outros objetos (Order e CustomerData)
