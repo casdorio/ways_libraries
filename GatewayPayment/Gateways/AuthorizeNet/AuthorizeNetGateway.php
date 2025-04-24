@@ -192,7 +192,7 @@ class AuthorizeNetGateway implements PaymentGatewayInterface
     }
 
     // Método para criar o objeto de pagamento
-    private function createPaymentType(Cart $cart, $capture = false): AnetAPI\PaymentType
+    private function createPaymentType(CardInfo $cart, $capture = false): AnetAPI\PaymentType
     {
         $creditCard = new AnetAPI\CreditCardType();
         $creditCard->setCardNumber($cart->card_number);
