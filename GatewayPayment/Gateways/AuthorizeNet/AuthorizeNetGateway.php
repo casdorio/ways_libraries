@@ -47,25 +47,25 @@ class AuthorizeNetGateway implements PaymentGatewayInterface
         return $this->createTransaction($amount, "priorAuthCaptureTransaction", $transactionId);
     }
 
-    public function getAnAcceptPaymentPage($transactionId, $amount)
-    {
-        $pay = new Payment(
-            card_number: null,  // Não necessário para a página hospedada
-            expiration_date: null,
-            cvv: null,
-            amount: $amount,
-            invoice_number: 'INV-' . time(), // Exemplo de número de fatura
-            description: 'Descrição da transação',
-            first_name: null,
-            last_name: null,
-            address: null,
-            city: null,
-            zip_code: null,
-            customer_id: null,
-            email: null
-        );
-        return $this->createTransactionAnAcceptPaymentPage($pay, "hostedPaymentButtonOptions", $transactionId);
-    }
+    // public function getAnAcceptPaymentPage($transactionId, $amount)
+    // {
+    //     $pay = new Payment(
+    //         card_number: null,
+    //         expiration_date: null,
+    //         cvv: null,
+    //         amount: $amount,
+    //         invoice_number: 'INV-' . time(),
+    //         description: 'Descrição da transação',
+    //         first_name: null,
+    //         last_name: null,
+    //         address: null,
+    //         city: null,
+    //         zip_code: null,
+    //         customer_id: null,
+    //         email: null
+    //     );
+    //     return $this->createTransactionAnAcceptPaymentPage($pay, "hostedPaymentButtonOptions", $transactionId);
+    // }
 
     // Método para obter detalhes da transação
     public function getTransactionDetails($transactionId)
