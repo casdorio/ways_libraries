@@ -5,6 +5,9 @@ namespace Casdorio\GatewayPayment\Gateways\AuthorizeNet;
 use Casdorio\GatewayPayment\Interfaces\PaymentGatewayInterface;
 use Casdorio\GatewayPayment\Entities\Payment;
 use Casdorio\GatewayPayment\Entities\Gateway;
+use Casdorio\GatewayPayment\Entities\CardInfo;
+use Casdorio\GatewayPayment\Entities\Address;
+use Casdorio\GatewayPayment\Entities\Item;
 use net\authorize\api\contract\v1 as AnetAPI;
 use net\authorize\api\controller as AnetController;
 
@@ -139,9 +142,9 @@ class AuthorizeNetGateway implements PaymentGatewayInterface
                 $transactionRequestType->setTransactionType($transactionType);
                 $transactionRequestType->setAmount($payment->amount);
                 $transactionRequestType->setOrder($this->createOrder($payment));
-                $transactionRequestType->setPayment($this->createPaymentType($payment));
-                $transactionRequestType->setBillTo($this->createCustomerAddress($payment));
-                $transactionRequestType->setShipTo($this->createCustomerAddressShip($payment));
+                $transactionRequestType->setPayment($this->createPaymentType($payment->card_info));
+                $transactionRequestType->setBillTo($this->createCustomerAddress($payment->billing_address));
+                $transactionRequestType->setShipTo($this->createCustomerAddressShip($payment->delivery_address));
                 //$transactionRequestType->addToLineItems($this->createLineItem($payment));
                 $transactionRequestType->setCustomer($this->createCustomerData($payment));
                 break;
@@ -149,7 +152,7 @@ class AuthorizeNetGateway implements PaymentGatewayInterface
             case "refundTransaction":
                 $transactionRequestType->setTransactionType($transactionType);
                 $transactionRequestType->setAmount($payment->amount);
-                $transactionRequestType->setPayment($this->createPaymentType($payment));
+                $transactionRequestType->setPayment($this->createPaymentType($payment->card_info));
                 $transactionRequestType->setRefTransId($refTransId);
                 break;
 
@@ -165,7 +168,7 @@ class AuthorizeNetGateway implements PaymentGatewayInterface
 
             case "captureOnlyTransaction": //nao esta usando 
                 $transactionRequestType->setTransactionType($transactionType);
-                $transactionRequestType->setPayment($this->createPaymentType($payment, true));
+                $transactionRequestType->setPayment($this->createPaymentType($payment->card_info, true));
                 $transactionRequestType->setAmount($payment->amount);
                 $transactionRequestType->setAuthCode($authCode);
                 break;
@@ -189,13 +192,13 @@ class AuthorizeNetGateway implements PaymentGatewayInterface
     }
 
     // Método para criar o objeto de pagamento
-    private function createPaymentType(Payment $payment, $capture = false): AnetAPI\PaymentType
+    private function createPaymentType(Cart $cart, $capture = false): AnetAPI\PaymentType
     {
         $creditCard = new AnetAPI\CreditCardType();
-        $creditCard->setCardNumber($payment->card_number);
-        $creditCard->setExpirationDate($payment->expiration_date);
+        $creditCard->setCardNumber($cart->card_number);
+        $creditCard->setExpirationDate($cart->expiration_date);
         if ($capture) {
-            $creditCard->setCardCode($payment->cvv);
+            $creditCard->setCardCode($cart->cvv);
         }
 
         $paymentType = new AnetAPI\PaymentType();
@@ -209,25 +212,25 @@ class AuthorizeNetGateway implements PaymentGatewayInterface
         $customerAddress = new AnetAPI\CustomerAddressType();
         $customerAddress->setFirstName($payment->first_name);
         $customerAddress->setLastName($payment->last_name);
-        $customerAddress->setAddress($payment->address);
-        $customerAddress->setCity($payment->city);
-        $customerAddress->setZip($payment->zip_code);
-        $customerAddress->setState($payment->state);
-        $customerAddress->setCountry($payment->country);
         $customerAddress->setPhoneNumber($payment->phoneNumber);
+        $customerAddress->setAddress($payment->billing_address->address);
+        $customerAddress->setCity($payment->billing_address->city);
+        $customerAddress->setZip($payment->billing_address->zip_code);
+        $customerAddress->setState($payment->billing_address->state);
+        $customerAddress->setCountry($payment->billing_address->country);
         return $customerAddress;
     }
 
-    private function createCustomerAddressShip(Payment $payment): AnetAPI\CustomerAddressType
+    private function createCustomerAddressShip(Address $address): AnetAPI\CustomerAddressType
     {
         $customerShippingAddress = new AnetAPI\CustomerAddressType();
-        $customerShippingAddress->setFirstName("James");
-        $customerShippingAddress->setLastName("White");
-        $customerShippingAddress->setAddress(rand() . " North Spring Street");
-        $customerShippingAddress->setCity("Toms River");
-        $customerShippingAddress->setState("NJ");
-        $customerShippingAddress->setZip("08753");
-        $customerShippingAddress->setCountry("EUA");
+        $customerAddress->setFirstName($payment->first_name);
+        $customerAddress->setLastName($payment->last_name);
+        $customerAddress->setAddress($payment->delivery_address->address);
+        $customerAddress->setCity($payment->delivery_address->city);
+        $customerAddress->setZip($payment->delivery_address->zip_code);
+        $customerAddress->setState($payment->delivery_address->state);
+        $customerAddress->setCountry($payment->delivery_address->country);
         return $customerShippingAddress;
     }
 
