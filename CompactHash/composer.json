@@ -1,0 +1,12 @@
+{
+  "name": "casdorio/compact-hash",
+  "autoload": {
+    "psr-4": {
+      "Casdorio\\CompactHash\\": "src/"
+    },
+    "files": ["src/Helpers.php"]
+  },
+  "require": {
+    "php": "^8.3"
+  }
+}
