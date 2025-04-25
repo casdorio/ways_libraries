@@ -76,7 +76,7 @@ class AuthorizeNetGateway implements PaymentGatewayInterface
     }
 
     // Método para criar a transação
-    private function createTransaction(Payment $payment, string $transactionType, $refTransId = null, $authCode = null)
+    private function createTransaction(?Payment $payment, string $transactionType, $refTransId = null, $authCode = null)
     {
         $request = new AnetAPI\CreateTransactionRequest();
         $request->setMerchantAuthentication($this->createMerchantAuthentication());
@@ -91,42 +91,42 @@ class AuthorizeNetGateway implements PaymentGatewayInterface
         return ErrorCodeHandler::handlePaymentResponse($response);
     }
 
-    private function createTransactionAnAcceptPaymentPage(Payment $payment, string $transactionType, $refTransId = null)
-    {
-        $request = new AnetAPI\GetHostedPaymentPageRequest();
-        $request->setMerchantAuthentication($this->createMerchantAuthentication());
-        $request->setRefId('ref' . time());
-        $request->setTransactionRequest($this->createTransactionRequest($payment, $transactionType, $refTransId));
+    // private function createTransactionAnAcceptPaymentPage(Payment $payment, string $transactionType, $refTransId = null)
+    // {
+    //     $request = new AnetAPI\GetHostedPaymentPageRequest();
+    //     $request->setMerchantAuthentication($this->createMerchantAuthentication());
+    //     $request->setRefId('ref' . time());
+    //     $request->setTransactionRequest($this->createTransactionRequest($payment, $transactionType, $refTransId));
 
-        $setting1 = new AnetAPI\SettingType();
-        $setting1->setSettingName("hostedPaymentButtonOptions");
-        $setting1->setSettingValue("{\"text\": \"Pay\"}");
+    //     $setting1 = new AnetAPI\SettingType();
+    //     $setting1->setSettingName("hostedPaymentButtonOptions");
+    //     $setting1->setSettingValue("{\"text\": \"Pay\"}");
 
-        $setting2 = new AnetAPI\SettingType();
-        $setting2->setSettingName("hostedPaymentOrderOptions");
-        $setting2->setSettingValue("{\"show\": false}");
+    //     $setting2 = new AnetAPI\SettingType();
+    //     $setting2->setSettingName("hostedPaymentOrderOptions");
+    //     $setting2->setSettingValue("{\"show\": false}");
 
-        $setting3 = new AnetAPI\SettingType();
-        $setting3->setSettingName("hostedPaymentReturnOptions");
-        $setting3->setSettingValue(
-            "{\"url\": \"https://admin.ways.us/payment/receipt\", \"cancelUrl\": \"https://admin.ways.us/payment/cancel\", \"showReceipt\": true}"
-        );
+    //     $setting3 = new AnetAPI\SettingType();
+    //     $setting3->setSettingName("hostedPaymentReturnOptions");
+    //     $setting3->setSettingValue(
+    //         "{\"url\": \"https://admin.ways.us/payment/receipt\", \"cancelUrl\": \"https://admin.ways.us/payment/cancel\", \"showReceipt\": true}"
+    //     );
 
-        $request->addToHostedPaymentSettings($setting1);
-        $request->addToHostedPaymentSettings($setting2);
-        $request->addToHostedPaymentSettings($setting3);
+    //     $request->addToHostedPaymentSettings($setting1);
+    //     $request->addToHostedPaymentSettings($setting2);
+    //     $request->addToHostedPaymentSettings($setting3);
 
 
-        $controller = new AnetController\GetHostedPaymentPageController($request);
-        $response = $controller->executeWithApiResponse(
-            $this->gateway->sandbox ? \net\authorize\api\constants\ANetEnvironment::SANDBOX : \net\authorize\api\constants\ANetEnvironment::PRODUCTION
-        );
+    //     $controller = new AnetController\GetHostedPaymentPageController($request);
+    //     $response = $controller->executeWithApiResponse(
+    //         $this->gateway->sandbox ? \net\authorize\api\constants\ANetEnvironment::SANDBOX : \net\authorize\api\constants\ANetEnvironment::PRODUCTION
+    //     );
 
-        print_r($response);
-        die;
+    //     print_r($response);
+    //     die;
 
-        return ErrorCodeHandler::handlePaymentResponse($response);
-    }
+    //     return ErrorCodeHandler::handlePaymentResponse($response);
+    // }
 
     // Método para criar a requisição da transação com lógica condicional
     private function createTransactionRequest(Payment $payment, string $transactionType, $refTransId = null, $authCode = null): AnetAPI\TransactionRequestType
