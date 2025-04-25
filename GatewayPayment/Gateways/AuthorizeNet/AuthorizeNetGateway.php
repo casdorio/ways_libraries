@@ -76,7 +76,7 @@ class AuthorizeNetGateway implements PaymentGatewayInterface
     }
 
     // Método para criar a transação
-    private function createTransaction(Payment $payment = null, string $transactionType, $refTransId = null, $authCode = null)
+    private function createTransaction(Payment $payment, string $transactionType, $refTransId = null, $authCode = null)
     {
         $request = new AnetAPI\CreateTransactionRequest();
         $request->setMerchantAuthentication($this->createMerchantAuthentication());
@@ -91,7 +91,7 @@ class AuthorizeNetGateway implements PaymentGatewayInterface
         return ErrorCodeHandler::handlePaymentResponse($response);
     }
 
-    private function createTransactionAnAcceptPaymentPage(Payment $payment = null, string $transactionType, $refTransId = null)
+    private function createTransactionAnAcceptPaymentPage(Payment $payment, string $transactionType, $refTransId = null)
     {
         $request = new AnetAPI\GetHostedPaymentPageRequest();
         $request->setMerchantAuthentication($this->createMerchantAuthentication());
@@ -129,7 +129,7 @@ class AuthorizeNetGateway implements PaymentGatewayInterface
     }
 
     // Método para criar a requisição da transação com lógica condicional
-    private function createTransactionRequest(Payment $payment = null, string $transactionType, $refTransId = null, $authCode = null): AnetAPI\TransactionRequestType
+    private function createTransactionRequest(Payment $payment, string $transactionType, $refTransId = null, $authCode = null): AnetAPI\TransactionRequestType
     {
         $transactionRequestType = new AnetAPI\TransactionRequestType();
 
