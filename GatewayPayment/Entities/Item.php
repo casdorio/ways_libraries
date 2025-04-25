@@ -9,7 +9,7 @@ class Item extends Entity
     public function __construct(
         public ?string $itemId = null,
         public ?string $name = null,
-        public ?int $quantity = null,
+        public ?string $quantity = null,
         public ?string $description = null,
         public ?float $unitPrice = null,
     ){}
