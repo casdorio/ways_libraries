@@ -1,5 +1,5 @@
 {
-    "name": "casdorio/ways-libraries",
+    "name": "casdorio/toolkit",
     "description": "Biblioteca PHP para gerenciamento de pagamentos, suporte a múltiplos gateways, hashids e serviços de pedido e e-mail.",
     "type": "library",
     "license": "proprietary",
@@ -10,7 +10,8 @@
         "psr-4": {
             "Casdorio\\GatewayPayment\\": "GatewayPayment/",
             "Casdorio\\Hashids\\": "Hashids/",
-            "Casdorio\\EmailService\\": "EmailService/"
+            "Casdorio\\EmailService\\": "EmailService/",
+            "Casdorio\\FlexPay\\": "FlexPay/"
         }
     },
     "authors": [
