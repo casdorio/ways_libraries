@@ -6,7 +6,7 @@ use CodeIgniter\Entity\Entity;
 
 class Payment extends Entity
 {
-    public ?array $items = null;
+    public ?Item $items = null;
     public ?Address $delivery_address = null;
     public ?Address $billing_address = null;
     public ?CardInfo $card_info = null;
@@ -20,7 +20,7 @@ class Payment extends Entity
         public ?string $customer_id,
         public ?string $email,
         public ?string $phoneNumber,
-        ?array $items = null,
+        ?Item $items = null,
         ?Address $delivery_address = null,
         ?Address $billing_address = null,
         ?CardInfo $card_info = null
