@@ -11,6 +11,6 @@ interface PaymentGatewayInterface
     public function refund(Payment $payment, $transactionId);
     public function void($transactionId);
     public function capture($transactionId, $amount);
-    public function getAnAcceptPaymentPage($transactionId, $amount);
+    //public function getAnAcceptPaymentPage($transactionId, $amount);
     public function getTransactionDetails($transactionId);
 }

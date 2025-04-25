@@ -6,7 +6,6 @@ use Casdorio\GatewayPayment\Interfaces\PaymentGatewayInterface;
 use Casdorio\GatewayPayment\Entities\Payment;
 use Casdorio\GatewayPayment\Entities\Gateway;
 use Casdorio\GatewayPayment\Entities\CardInfo;
-use Casdorio\GatewayPayment\Entities\Address;
 use Casdorio\GatewayPayment\Entities\Item;
 use net\authorize\api\contract\v1 as AnetAPI;
 use net\authorize\api\controller as AnetController;
@@ -221,16 +220,16 @@ class AuthorizeNetGateway implements PaymentGatewayInterface
         return $customerAddress;
     }
 
-    private function createCustomerAddressShip(Address $address): AnetAPI\CustomerAddressType
+    private function createCustomerAddressShip(Payment $payment): AnetAPI\CustomerAddressType
     {
         $customerShippingAddress = new AnetAPI\CustomerAddressType();
-        $customerAddress->setFirstName($payment->first_name);
-        $customerAddress->setLastName($payment->last_name);
-        $customerAddress->setAddress($payment->delivery_address->address);
-        $customerAddress->setCity($payment->delivery_address->city);
-        $customerAddress->setZip($payment->delivery_address->zip_code);
-        $customerAddress->setState($payment->delivery_address->state);
-        $customerAddress->setCountry($payment->delivery_address->country);
+        $customerShippingAddress->setFirstName($payment->first_name);
+        $customerShippingAddress->setLastName($payment->last_name);
+        $customerShippingAddress->setAddress($payment->delivery_address->address);
+        $customerShippingAddress->setCity($payment->delivery_address->city);
+        $customerShippingAddress->setZip($payment->delivery_address->zip_code);
+        $customerShippingAddress->setState($payment->delivery_address->state);
+        $customerShippingAddress->setCountry($payment->delivery_address->country);
         return $customerShippingAddress;
     }
 
