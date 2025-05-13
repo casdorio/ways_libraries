@@ -6,13 +6,13 @@ use CodeIgniter\Entity\Entity;
 
 class Payment extends Entity
 {
-    public ?Item $items = null;
+    public ?array $items = null;
     public ?Address $delivery_address = null;
     public ?Address $billing_address = null;
     public ?CardInfo $card_info = null;
 
     public function __construct(
-        public string $amount,
+        public float $amount,
         public ?string $invoice_number,
         public ?string $description,
         public ?string $first_name,
@@ -20,7 +20,7 @@ class Payment extends Entity
         public ?string $customer_id,
         public ?string $email,
         public ?string $phoneNumber,
-        ?Item $items = null,
+        ?array $items = null,
         ?Address $delivery_address = null,
         ?Address $billing_address = null,
         ?CardInfo $card_info = null
