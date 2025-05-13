@@ -144,7 +144,11 @@ class AuthorizeNetGateway implements PaymentGatewayInterface
                 $transactionRequestType->setPayment($this->createPaymentType($payment->card_info));
                 $transactionRequestType->setBillTo($this->createCustomerAddress($payment));
                 $transactionRequestType->setShipTo($this->createCustomerAddressShip($payment));
-                //$transactionRequestType->addToLineItems($this->createLineItem($payment));
+                if (!empty($payment->items)) {
+                    foreach ($payment->items as $item) {
+                        $transactionRequestType->addToLineItems($this->createLineItem($item));
+                    }
+                }
                 $transactionRequestType->setCustomer($this->createCustomerData($payment));
                 break;
 
